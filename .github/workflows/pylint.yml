@@ -1,0 +1,51 @@
+class Personel:
+    def __init__(self, adi, departmani, calisma_yili, maasi):
+        self.adi = adi
+        self.departmani = departmani
+        self.calisma_yili = calisma_yili
+        self.maasi = maasi
+
+class Firma:
+    def __init__(self):
+        self.personel_listesi = []
+
+    def personel_ekle(self, personel):
+        self.personel_listesi.append(personel)
+
+    def personel_listele(self):
+        for personel in self.personel_listesi:
+            print("Adi:", personel.adi)
+            print("Departmani:", personel.departmani)
+            print("Calisma Yili:", personel.calisma_yili)
+            print("Maasi:", personel.maasi)
+            print()
+
+    def maas_zammi(self, personel, zam_orani):
+        personel.maasi *= (1 + zam_orani / 100)
+
+    def personel_cikart(self, personel):
+        self.personel_listesi.remove(personel)
+
+# Test etmek için örnek personel ve firma oluşturalım
+personel1 = Personel("Ahmet", "Muhasebe", 5, 5000)
+personel2 = Personel("Mehmet", "Satis", 3, 4500)
+
+firma = Firma()
+firma.personel_ekle(personel1)
+firma.personel_ekle(personel2)
+
+print("Firma Personel Listesi:")
+firma.personel_listele()
+
+print("\nMaaslar Guncelleniyor...")
+firma.maas_zammi(personel1, 10)
+firma.maas_zammi(personel2, 5)
+
+print("\nGuncellenmis Firma Personel Listesi:")
+firma.personel_listele()
+
+print("\nPersonel Cikartiliyor...")
+firma.personel_cikart(personel1)
+
+print("\nGuncellenmis Firma Personel Listesi:")
+firma.personel_listele()
